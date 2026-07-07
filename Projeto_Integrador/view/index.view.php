@@ -1,7 +1,6 @@
-<!-- Container principal dividido em 3 colunas -->
 <div class="flex flex-col  lg:flex-row w-full min-h-[calc(100vh-70px)] bg-gray-100">
 
-    <!-- BARRA BRANCA ESQUERDA (Filtros) -->
+
     <aside class="hidden lg:block w-[280px] bg-white border-r border-gray-200 p-6 shrink-0">
         <h2 class="text-lg font-bold text-gray-800 mb-4">Filtrar Vagas</h2>
         
@@ -32,17 +31,16 @@
         </div>
     </aside>
 
-    <!-- CONTEÚDO CENTRAL (Lista de Vagas) -->
     <section class="flex-1 p-4 lg:p-8">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800">Vagas Recentes</h2>
             <span class="text-sm text-gray-500">Mostrando 12 de 150 vagas</span>
         </div>
 
-        <!-- Grid de Vagas -->
+     
         <div class="flex flex-col gap-4">
             
-            <!-- Exemplo de Card de Vaga 1 -->
+         
             <div class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
                 <div class="flex justify-between items-start">
                     <div>
@@ -62,7 +60,7 @@
                 </div>
             </div>
 
-            <!-- Exemplo de Card de Vaga 2 -->
+           
             <div class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
                 <div class="flex justify-between items-start">
                     <div>
@@ -85,7 +83,7 @@
         </div>
     </section>
 
-    <!-- BARRA BRANCA DIREITA (Destaques/Empresas) -->
+    
     <aside class="hidden lg:block w-[280px] bg-white border-l border-gray-200 p-6 shrink-0">
         <h2 class="text-lg font-bold text-gray-800 mb-4">Empresas Contratando</h2>
         
