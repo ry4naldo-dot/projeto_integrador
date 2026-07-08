@@ -8,6 +8,18 @@
             </h1>
             <p class="text-base text-gray-500 mt-3">Acesse sua conta para encontrar oportunidades</p>
         </div>
+        
+        <?php
+        if ($validacao = flash()->get('validacoes_login')):
+            foreach ($validacao as $v):
+
+        ?>
+                <h1 class="bg-red-500"><?= $v ?></h1>
+        <?php
+            endforeach;
+
+        endif;
+        ?>
 
         <form action="/login" method="POST" class="space-y-6">
             

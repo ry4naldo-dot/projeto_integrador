@@ -29,7 +29,7 @@
             <?php 
             // Só mostra a barra cinza e as opções de conta SE:
             // O usuário estiver logado OU a página atual NÃO for a FazerLogin
-            if (isset($_SESSION['auth']) || $view !== 'FazerLogin'): 
+            if (isset($_SESSION['auth']) || $view !== 'login'): 
             ?>
                 <div class="hidden lg:block h-6 w-px bg-gray-300 mx-2"></div>
 

@@ -31,13 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $senhaDoBanco = $usuario->senha;
 
-        if (!password_verify($senhaDoPost, $senhaDoBanco)) {
+        if (!$senhaDoPost == $senhaDoBanco) {
 
+         
             flash()->push('validacoes_login', ['Usuario ou senha estão incorretos']);
             header('Location: /login');
             exit();
         }
-
 
         $_SESSION['auth'] = $usuario;
 
