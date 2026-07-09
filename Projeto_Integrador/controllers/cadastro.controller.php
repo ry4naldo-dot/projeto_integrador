@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ], $_POST);
 
 
-    if ($validacao->naoPassou('registro')) {
-        header('location: /login');
+    if ($validacao->naoPassou('cadastro')) {
+        header('location: /cadastro');
         exit();
     }
 
@@ -39,4 +39,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-header('Location: /login');
+// header('Location: /cadastro');
+view('cadastro');

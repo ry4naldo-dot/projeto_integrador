@@ -1,9 +1,11 @@
 <?php
 
-$vagas = $database->query(
+$empresa = $database->query(
     sql: "select * from empresas where id = :id",
     class: Empresa::class,
     params:['id' => $_REQUEST['id']]
-)->fetch();
+)->fetchAll();
 
-view('Vaga'); 
+// dd($empresa);
+
+view('Empresas');
