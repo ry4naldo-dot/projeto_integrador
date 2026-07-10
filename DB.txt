@@ -5,96 +5,60 @@
 
 -- drop table teste;
 
--- Tabela: empresas
-
-CREATE TABLE `empresas` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `nome_empresa` VARCHAR(255) NOT NULL,
-    `senha` VARCHAR(255) NOT NULL,
-    `tipo` ENUM(
+create table empresas(
+  id int primary key auto_increment not null,
+  nome_empresa varchar(255) not null,
+  tipo ENUM(
     'Eletronicos', 'Jogos', 'Seguranca', 
     'Diversao', 'Tecnologia', 'Mercado', 
     'Agronomia', 'Medicina', 'Ambiental', 
     'Hidroeletrica'
     ) NOT NULL,
-    `descricao` TEXT NOT NULL,
-    `numero` VARCHAR(50) NOT NULL,
-    `email` VARCHAR(255) NOT NULL,
-    `endereco` VARCHAR(255) NOT NULL,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `idx_empresas_email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Tabela: usuarios
-
-CREATE TABLE `usuarios` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `nome` VARCHAR(255) NOT NULL,
-    `senha` VARCHAR(255) NOT NULL,
-    `endereco` VARCHAR(255) NOT NULL,
-    `telefone` VARCHAR(50) NOT NULL,
-    `email` VARCHAR(255) NOT NULL,
-    `descricao` TEXT NOT NULL,
-    `especialidades` TEXT NOT NULL,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `idx_usuarios_email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Tabela: vagas
-
-CREATE TABLE `vagas` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `id_usuarios` INT UNSIGNED NOT NULL,
-    `id_empresas` INT UNSIGNED NOT NULL,
-    `descricao` TEXT NOT NULL,
-    `tipo` ENUM(
-    'Eletronicos', 'Jogos', 'Seguranca', 
-    'Diversao', 'Tecnologia', 'Mercado', 
-    'Agronomia', 'Medicina', 'Ambiental', 
-    'Hidroeletrica'
-    ) NOT NULL,
-    `valor` DECIMAL(10, 2) NOT NULL,
-    `modelo` ENUM('presencial', 'remoto', 'hibrido') NOT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `idx_vagas_id_usuarios` (`id_usuarios`),
-    INDEX `idx_vagas_id_empresas` (`id_empresas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Tabela: curriculos
-
-    CREATE TABLE `curriculos` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `id_usuarios` INT UNSIGNED NOT NULL,
-    `nome` VARCHAR(255) NOT NULL,
-    `descricao` TEXT NOT NULL,
-    `data_nascimento` DATE NOT NULL,
-    `telefone` VARCHAR(50) NOT NULL,
-    `img` TEXT NOT NULL,
-    `email` VARCHAR(255) NOT NULL,
-    `tipo` ENUM(
-    'Eletronicos', 'Jogos', 'Seguranca', 
-    'Diversao', 'Tecnologia', 'Mercado', 
-    'Agronomia', 'Medicina', 'Ambiental', 
-    'Hidroeletrica'
-    ) NOT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `idx_curriculos_id_usuarios` (`id_usuarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `usuarios` (
-    `nome`, 
-    `senha`, 
-    `endereco`, 
-    `telefone`, 
-    `email`, 
-    `descricao`, 
-    `especialidades`
-) VALUES (
-    'Gabriel Silva', 
-    '$2y$10$e0myLMaAG8a56S1D2C9mFeD4m.A6.A59g16p5P2Y/6D4J8.B7H2mq',
-    'Rua das Flores, 123 - Centro, Tramandaí - RS', 
-    '(51) 99999-8888', 
-    'gabriel.silva@email.com', 
-    'Desenvolvedor focado em soluções web, proativo e habituado a trabalhar em equipe.', 
-    'PHP, MySQL, HTML, CSS, JavaScript, Arquitetura de Redes'
+  descricao text not null,
+  numero varchar(50) not null,
+  email varchar(255) unique not null,
+  endereco varchar(255) not null
 );
+
+create table usuarios(
+  id int primary key auto_increment not null,
+  nome varchar(255) not null,
+  senha varchar(255) not null,
+  email varchar(255) unique not null,
+);
+
+create table vagas(
+  id int primary key auto_increment not null,
+  id_empresas int not null,
+  descricao text not null,
+  tipo enum(
+    'Eletronicos', 'Jogos', 'Seguranca', 
+    'Diversao', 'Tecnologia', 'Mercado', 
+    'Agronomia', 'Medicina', 'Ambiental', 
+    'Hidroeletrica'
+    ) not null,
+  valor decimal(10, 2) not null,
+  modelo ENUM('presencial', 'remoto', 'hibrido') NOT NULL,
+  foreign key (id_empresas) references empresas(id)
+);
+
+create table curriculos(
+  id int primary key auto_increment not null,
+  id_usuarios int not null,
+  id_vagas int not null,
+  nome varchar(255) not null,
+  descricao text not null,
+  telefone varchar(50) not null,
+  data_nascimento date not null,
+  email varchar(255) not null,
+  img text not null,
+  tipo enum(
+    'Eletronicos', 'Jogos', 'Seguranca', 
+    'Diversao', 'Tecnologia', 'Mercado', 
+    'Agronomia', 'Medicina', 'Ambiental', 
+    'Hidroeletrica'
+    ) not null,
+  foreign key (id_usuarios) references usuarios(id),
+  foreign key (id_vagas) references vagas(id)
+)
+

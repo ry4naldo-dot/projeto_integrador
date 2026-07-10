@@ -2,6 +2,7 @@
 
 
 require 'models/Usuario.php';
+require 'models/Empresa.php';
 session_start();
 require 'Flash.php';
 require 'function.php';
