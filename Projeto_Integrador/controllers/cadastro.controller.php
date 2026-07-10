@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $validacao = Validacao::validar([
         'nome' => ['required'],
-        'email' => ['required', 'email', 'confirmed', 'unique:usuarios'],
+        'email' => ['required', 'email', 'unique:usuarios'],
         'senha' => ['required', 'min:8', 'max:64', 'strong']
     ], $_POST);
 

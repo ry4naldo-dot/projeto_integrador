@@ -12,6 +12,22 @@
             <p class="text-base text-gray-500 mt-2">Crie sua conta e comece a se candidatar</p>
         </div>
 
+       <?php if (isset($_REQUEST['mensagem'])): ?>
+            <h1 class="bg-green-500"><?= $_REQUEST['mensagem']; ?></h1>
+        <?php endif; ?>
+
+        <?php
+        if ($validacao = flash()->get('validacoes_cadastro')):
+            foreach ($validacao as $v):
+
+        ?>
+                <h1 class="bg-red-500"><?= $v ?></h1>
+        <?php
+            endforeach;
+
+        endif;
+        ?>
+
         <!-- Formulário de Cadastro -->
         <form action="/cadastro" method="POST" class="space-y-5">
             

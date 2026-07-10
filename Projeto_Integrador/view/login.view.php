@@ -53,7 +53,7 @@
 
         <div class="mt-8 text-center text-base text-gray-600">
             Ainda não criou uma conta? 
-            <a href="cadastrar" class="text-blue-600 hover:text-blue-800 hover:underline font-bold">
+            <a href="cadastro" class="text-blue-600 hover:text-blue-800 hover:underline font-bold">
                 Cadastre-se
             </a>
         </div>
