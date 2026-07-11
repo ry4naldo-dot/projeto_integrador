@@ -27,7 +27,7 @@
 
             
             <?php 
-            if (isset($_SESSION['auth']) || $view !== 'login'): 
+            if (isset($_SESSION['auth']) || $view !== 'FazerLogin'): 
             ?>
                 <div class="hidden lg:block h-6 w-px bg-gray-300 mx-2"></div>
 
@@ -43,7 +43,7 @@
                     <?php else: ?>
                         
                         <li>
-                            <a href="login" class="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors no-underline">
+                            <a href="FazerLogin" class="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors no-underline">
                                 Entrar
                             </a>
                         </li>
