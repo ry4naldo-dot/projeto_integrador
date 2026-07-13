@@ -6,4 +6,4 @@ $VagasRecentes = $database->query(
     // params: ['filtro' => "%$pesquisar%"]
 )->fetchAll();
 
-view('index');
+view('index', compact('VagasRecentes'));

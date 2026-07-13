@@ -3,6 +3,8 @@
 
 require 'models/Usuario.php';
 require 'models/Empresa.php';
+require 'models/Vagas.php';
+require 'models/Curriculo.php';
 session_start();
 require 'Flash.php';
 require 'function.php';

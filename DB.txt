@@ -3,11 +3,15 @@
 --   nome varchar(255)
 -- );
 
--- drop table teste;
+--  drop table empresas;
+-- drop table usuarios;
+-- drop table vagas;
+-- drop table curriculos;
 
 create table empresas(
   id int primary key auto_increment not null,
   nome_empresa varchar(255) not null,
+  senha varchar(255) not null,
   tipo ENUM(
     'Eletronicos', 'Jogos', 'Seguranca', 
     'Diversao', 'Tecnologia', 'Mercado', 
@@ -24,7 +28,7 @@ create table usuarios(
   id int primary key auto_increment not null,
   nome varchar(255) not null,
   senha varchar(255) not null,
-  email varchar(255) unique not null,
+  email varchar(255) unique not null
 );
 
 create table vagas(
@@ -60,5 +64,25 @@ create table curriculos(
     ) not null,
   foreign key (id_usuarios) references usuarios(id),
   foreign key (id_vagas) references vagas(id)
-)
+);
 
+-- 1. Inserindo 2 Empresas
+INSERT INTO empresas (nome_empresa, senha, tipo, descricao, numero, email, endereco) VALUES
+('TechNova Soluções', 'hash_senha_empresa1', 'Tecnologia', 'Empresa focada em desenvolvimento de software e soluções cloud.', '51999998888', 'contato@technova.com', 'Av. Protásio Alves, 1200 - Porto Alegre'),
+('EcoGreen Agronegócios', 'hash_senha_empresa2', 'Agronomia', 'Líder em soluções sustentáveis e tecnologia para o campo.', '51988887777', 'vagas@ecogreen.com', 'Rodovia RS-030, Km 15 - Tramandaí');
+
+-- 2. Inserindo 1 Usuário
+INSERT INTO usuarios (nome, senha, email) VALUES
+('Carlos Eduardo', 'hash_senha_usuario1', 'carlos.eduardo@email.com');
+
+-- 3. Inserindo Vagas para as Empresas cadastradas
+-- (Assumindo que TechNova pegou o ID 1 e EcoGreen o ID 2)
+INSERT INTO vagas (id_empresas, descricao, tipo, valor, modelo) VALUES
+(1, 'Vaga para Desenvolvedor Full Stack Java/React. Experiência com APIs REST e bancos relacionais.', 'Tecnologia', 5500.00, 'remoto'),
+(2, 'Vaga para Consultor Técnico de Vendas Agrícolas. Atendimento ao produtor e manejo de culturas.', 'Agronomia', 4200.00, 'hibrido');
+
+-- 4. Inserindo Currículos (Candidaturas do usuário às vagas)
+-- O usuário (ID 1) se candidata às vagas disponíveis (IDs 1 e 2)
+INSERT INTO curriculos (id_usuarios, id_vagas, nome, descricao, telefone, data_nascimento, email, img, tipo) VALUES
+(1, 1, 'Currículo Carlos - Dev', 'Desenvolvedor focado em Java e PHP, buscando oportunidade na área de tecnologia.', '51995554433', '2004-05-15', 'carlos.eduardo@email.com', 'perfil_tech.png', 'Tecnologia'),
+(1, 2, 'Currículo Carlos - Geral', 'Interesse em suporte técnico e atendimento em soluções de sistemas.', '51995554433', '2004-05-15', 'carlos.eduardo@email.com', 'perfil_geral.png', 'Agronomia');

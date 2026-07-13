@@ -8,4 +8,4 @@ $empresa = $database->query(
 
 // dd($empresa);
 
-view('Empresas');
+view('Empresas', compact('empresa'));
