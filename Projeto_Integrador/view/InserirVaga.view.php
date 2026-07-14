@@ -21,7 +21,7 @@
         <?php endif; ?>
 
         <!-- Formulário -->
-        <form action="/processar_inserir_vaga" method="POST" class="space-y-6">
+        <form action="/InserirVaga" method="POST" class="space-y-6">
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 

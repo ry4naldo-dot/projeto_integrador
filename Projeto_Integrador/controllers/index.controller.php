@@ -1,7 +1,8 @@
 <?php
 
 $VagasRecentes = $database->query(
-    sql: "select 
+  sql: "select 
+            v.id,
             e.nome_empresa, 
             v.descricao, 
             v.tipo, 
@@ -10,7 +11,7 @@ $VagasRecentes = $database->query(
             e.endereco  
           FROM vagas v
           INNER JOIN empresas e ON v.id_empresas = e.id",
-    class: Vagas::class
+  class: Vagas::class
 )->fetchAll();
 
 view('index', compact('VagasRecentes'));

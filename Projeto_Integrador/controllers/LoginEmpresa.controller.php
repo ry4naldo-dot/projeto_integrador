@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    dd($empresa);
+    // dd($empresa);
 
     flash()->push('validacoes_login', ['Usuario ou senha estão incorretos']);
     header('Location: /LoginEmpresa');

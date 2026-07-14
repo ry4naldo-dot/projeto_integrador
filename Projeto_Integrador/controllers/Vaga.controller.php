@@ -12,4 +12,3 @@ $vagas = $database->query(
 )->fetch();
 
 view('Vaga', compact('vagas')); 
-// view('Vaga');
