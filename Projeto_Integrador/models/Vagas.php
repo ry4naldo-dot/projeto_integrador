@@ -4,9 +4,10 @@ class Vagas
 {
 
     public $id;
-    public $nome;
+    public $nome_empresa;
     public $descricao;
     public $tipo;
     public $valor;
     public $modelo;
+    public $endereco;
 }

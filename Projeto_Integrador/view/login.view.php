@@ -1,14 +1,14 @@
 <div class="flex justify-center items-start w-full min-h-screen bg-gray-50 pt-20 md:pt-32 px-4">
-    
+
     <div class="bg-white w-full max-w-lg p-10 rounded-xl shadow-sm border border-gray-200">
-        
+
         <div class="text-center mb-10">
             <h1 class="text-4xl font-extrabold tracking-tight">
                 Click<span class="text-blue-600">Vagas</span>
             </h1>
             <p class="text-base text-gray-500 mt-3">Acesse sua conta para encontrar oportunidades</p>
         </div>
-        
+
         <?php
         if ($validacao = flash()->get('validacoes_login')):
             foreach ($validacao as $v):
@@ -22,7 +22,7 @@
         ?>
 
         <form action="/login" method="POST" class="space-y-6">
-            
+
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
                 <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required
@@ -45,18 +45,23 @@
                 </a>
             </div> -->
 
-            <button type="submit" 
+            <button type="submit"
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-lg mt-2">
                 Entrar
             </button>
         </form>
 
         <div class="mt-8 text-center text-base text-gray-600">
-            Ainda não criou uma conta? 
+            Ainda não criou uma conta?
             <a href="cadastro" class="text-blue-600 hover:text-blue-800 hover:underline font-bold">
                 Cadastre-se
             </a>
         </div>
-
+        <div class="mt-2 text-center text-base text-gray-600">
+            Sou uma empresa.
+            <a href="LoginEmpresa" class="text-blue-600 hover:text-blue-800 hover:underline font-bold">
+                Fazer Login
+            </a>
+        </div>
     </div>
 </div>

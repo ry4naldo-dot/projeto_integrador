@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <?php if (empty($curriculos)): ?>
+    <?php if (empty($curriculo)): ?>
         <!-- Mensagem caso não tenha nenhum currículo -->
         <div class="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,25 +25,25 @@
         
         <!-- Grid de Candidatos -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <?php foreach ($curriculos as $candidato): ?>
+            <?php foreach ($curriculo as $c): ?>
                 
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col">
                     
                     <div class="flex justify-between items-start border-b border-gray-100 pb-4 mb-4">
                         <div>
                             <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
-                                <?= htmlspecialchars($candidato->nome) ?>
+                                <?= htmlspecialchars($c->nome) ?>
                             </h3>
                             
                             <!-- Formata a data de nascimento para o padrão brasileiro -->
                             <p class="text-sm text-gray-500 mt-1">
-                                Nascido(a) em: <?= date('d/m/Y', strtotime($candidato->data_nascimento)) ?>
+                                Nascido(a) em: <?= date('d/m/Y', strtotime($c->data_nascimento)) ?>
                             </p>
                         </div>
                         
                         <!-- Tag com a área de interesse -->
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 uppercase tracking-wide">
-                            <?= htmlspecialchars($candidato->tipo) ?>
+                            <?= htmlspecialchars($c->tipo) ?>
                         </span>
                     </div>
 
@@ -51,7 +51,7 @@
                     <div class="mb-6 flex-grow">
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Carta de Apresentação</h4>
                         <p class="text-gray-700 text-sm bg-gray-50 p-4 rounded-lg border border-gray-100">
-                            <?= nl2br(htmlspecialchars($candidato->descricao)) ?>
+                            <?= (($c->descricao)) ?>
                         </p>
                     </div>
 
@@ -60,23 +60,23 @@
                         
                         <div class="space-y-2">
                             <!-- E-mail -->
-                            <a href="mailto:<?= htmlspecialchars($candidato->email) ?>" class="flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                            <a href="mailto:<?= htmlspecialchars($c->email) ?>" class="flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors">
                                 <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                <?= htmlspecialchars($candidato->email) ?>
+                                <?= htmlspecialchars($c->email) ?>
                             </a>
                             
                             <!-- WhatsApp / Telefone -->
-                            <a href="https://wa.me/55<?= preg_replace('/[^0-9]/', '', $candidato->telefone) ?>" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-green-600 transition-colors">
+                            <a href="https://wa.me/55<?= preg_replace('/[^0-9]/', '', $c->telefone) ?>" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-green-600 transition-colors">
                                 <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                                <?= htmlspecialchars($candidato->telefone) ?>
+                                <?= htmlspecialchars($c->telefone) ?>
                             </a>
                         </div>
 
                         <div class="flex items-end justify-end">
-                            <?php if (!empty($candidato->img)): ?>
+                            <?php if (!empty($c->img)): ?>
                                 <!-- Botão de Baixar Currículo (Arquivo Anexado) -->
                                 <!-- Assumindo que a pasta onde os arquivos são salvos se chama 'uploads/' -->
-                                <a href="/uploads/<?= htmlspecialchars($candidato->img) ?>" target="_blank" download class="inline-flex items-center px-4 py-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-colors text-sm font-medium w-full md:w-auto justify-center">
+                                <a href="/uploads/<?= htmlspecialchars($c->img) ?>" target="_blank" download class="inline-flex items-center px-4 py-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-colors text-sm font-medium w-full md:w-auto justify-center">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                     Ver Anexo
                                 </a>

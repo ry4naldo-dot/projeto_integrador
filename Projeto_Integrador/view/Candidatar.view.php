@@ -20,7 +20,7 @@
 
         <!-- Formulário de Candidatura -->
         <!-- O enctype="multipart/form-data" é OBRIGATÓRIO para o upload do campo "img" -->
-        <form action="/candidatar_action" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form action="candidatar" method="POST" enctype="multipart/form-data" class="space-y-6">
             
             <!-- Campo Nome Completo -->
             <div>
