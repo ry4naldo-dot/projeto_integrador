@@ -1,6 +1,5 @@
 <?php
 
-// 1. PROCESSAMENTO DO FORMULÁRIO (Apenas se a requisição for do tipo POST)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Coleta as credenciais enviadas pelo usuário
@@ -22,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-    // 2. BUSCA DO USUÁRIO NO BANCO DE DADOS
     // Consulta se existe algum usuário cadastrado com o e-mail fornecido
     $usuario = $database->query(
         sql: "select * from usuarios where email = :email",
@@ -31,14 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     )->fetch();
 
 
-    // 3. VERIFICAÇÃO DE SENHA (Caso o usuário seja encontrado)
     if ($usuario) {
 
-        $senhaDoPost = $_POST['senha'];   // Senha digitada no formulário
-        $senhaDoBanco = $usuario->senha; // Senha gravada no banco de dados
+        $senhaDoPost = $_POST['senha'];   
+        $senhaDoBanco = $usuario->senha; 
 
         // Compara a senha digitada com a senha salva no banco.
-        // Nota importante de lógica: o operador "!" nega apenas o primeiro termo (!$senhaDoPost).
         if (!$senhaDoPost == $senhaDoBanco) {
 
             // Se as senhas não baterem, define o erro de login e redireciona
@@ -47,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        // 4. AUTENTICAÇÃO COM SUCESSO
         // Salva os dados do usuário na sessão global 'auth' para mantê-lo logado
         $_SESSION['auth'] = $usuario;
 
@@ -60,14 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
   
-    // 5. TRATAMENTO DE ERRO (Caso o e-mail não exista no banco de dados)
-    // Define a mesma mensagem genérica por questões de segurança (evita que invasores descubram quais e-mails existem no sistema)
+    // Define a mesma mensagem genérica por questões de segurança
     flash()->push('validacoes_login', ['Usuario ou senha estão incorretos']);
     header('Location: /login');
     exit();
 }
 
-
-// FLUXO DE CARREGAMENTO (GET)
-// Se a página for acessada normalmente (via GET), carrega a tela de login
 view('login');

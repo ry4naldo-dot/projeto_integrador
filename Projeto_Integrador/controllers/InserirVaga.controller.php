@@ -1,7 +1,6 @@
 <?php
 
 
-// 1. FLUXO DE CARREGAMENTO (Apenas se a requisição for do tipo GET)
 // Exibe a página que contém o formulário HTML para o cadastro da vaga.
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     view('InserirVaga');
@@ -9,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 
-// 2. FLUXO DE PROCESSAMENTO (Apenas se a requisição for do tipo POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Coleta as informações enviadas pelo formulário
@@ -19,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $valor       = $_POST['valor'];
     $modelo      = $_POST['modelo'];
 
-    // 3. VALIDAÇÃO DOS DADOS
     // Garante que todos os campos foram preenchidos e que a descrição possui um tamanho mínimo aceitável
     $validacao = Validacao::validar([
         'descricao' => ['required', 'min:10'], // Descrição é obrigatória e precisa de pelo menos 10 caracteres     
@@ -35,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // 4. SALVAMENTO NO BANCO DE DADOS
     // Executa a query estruturada para salvar a nova vaga na tabela 'vagas'
     $database->query(
         sql: "INSERT INTO vagas (id_empresas, descricao, tipo, valor, modelo)
@@ -46,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         params: compact('id_empresas', 'descricao', 'tipo', 'valor', 'modelo')
     );
 
-    // 5. FEEDBACK E DIRECIONAMENTO
     // Define uma mensagem de sucesso temporária na sessão utilizando o sistema de Flash
     flash()->push('mensagem', 'Vaga publicada com sucesso!');
 

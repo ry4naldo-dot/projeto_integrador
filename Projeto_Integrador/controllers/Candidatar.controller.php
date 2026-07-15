@@ -1,6 +1,5 @@
 <?php
 
-// 1. DEFESA INICIAL (Bloqueio de visitantes)
 // Se não houver nenhum usuário ou empresa logada na sessão (auth() retorna null),
 // barra imediatamente a navegação e redireciona para a tela de login.
 if (!auth()) {
@@ -8,43 +7,29 @@ if (!auth()) {
     exit();
 }
 
-// ==========================================
-// FLUXO 1: Abrir o Formulário de Candidatura (GET)
-// ==========================================
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Captura o ID da vaga que veio na query string da URL (ex: ?id=5). Se não houver, define como nulo.
-    $id_vaga = $_REQUEST['id'] ?? null; 
-    
-    // Abre a view 'Candidatar.view.php' passando a variável $id_vaga para que o formulário saiba a qual vaga o candidato se aplica
-    view('Candidatar', compact('id_vaga')); 
-    exit(); // Encerra o script para garantir que o bloco do POST (abaixo) não seja executado
-}
+// Captura o ID da vaga que veio na query string da URL (ex: ?id=5). Se não houver, define como nulo.
+$id_vaga = $_REQUEST['id'] ?? null; 
 
-
-// ==========================================
-// FLUXO 2: Processar o Envio do Currículo (POST)
-// ==========================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Coleta as credenciais e dados pessoais preenchidos no formulário
-    $id_usuarios     = auth()->id; // Recupera o ID do usuário logado diretamente da sessão
-    $id_vagas        = $_POST['id_vagas']; // ID da vaga à qual o candidato está se aplicando
+    $id_usuarios     = auth()->id;
+    $id_vagas        = $_POST['id_vagas']; 
     $nome            = $_POST['nome'];
     $email           = $_POST['email'];
     $telefone        = $_POST['telefone'];
     $data_nascimento = $_POST['data_nascimento'];
-    $tipo            = $_POST['tipo']; // Tipo/categoria profissional ou formato de currículo
-    $descricao       = $_POST['descricao']; // Carta de apresentação ou resumo profissional
+    $tipo            = $_POST['tipo']; 
+    $descricao       = $_POST['descricao']; 
 
-    // 2. VALIDAÇÃO DOS DADOS DO CANDIDATO
     // Garante o preenchimento de todas as informações básicas obrigatórias
     $validacao = Validacao::validar([
-        'nome'            => ['required', 'min:3'], // Nome obrigatório e com pelo menos 3 letras
+        'nome'            => ['required', 'min:3'], 
         'email'           => ['required'],
         'telefone'        => ['required'],
         'data_nascimento' => ['required'],
         'tipo'            => ['required'],
-        'descricao'       => ['required', 'min:10'] // Descrição/Resumo obrigatório e com no mínimo 10 caracteres
+        'descricao'       => ['required', 'min:10']
     ], $_POST);
 
     // Se o validador encontrar inconsistências ou campos vazios:
@@ -54,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // 3. PROCESSAMENTO E UPLOAD DO ARQUIVO/FOTO (Se houver)
+    
     $img = ""; // Variável padrão para persistir o caminho no banco de dados (caso nenhum arquivo seja enviado)
     
     // Verifica se o arquivo chamado 'img' foi enviado sem erros no upload (UPLOAD_ERR_OK)
@@ -72,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($_FILES['img']['tmp_name'], __DIR__ . "/../$img");
     }
 
-    // 4. PERSISTÊNCIA NO BANCO DE DADOS
+   
     // Executa a query de inserção para cadastrar a nova candidatura (currículo) associando-a ao usuário e à vaga
     $database->query(
         sql: "INSERT INTO curriculos (id_usuarios, id_vagas, nome, email, telefone, data_nascimento, tipo, descricao, img) 
@@ -82,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         params: compact('id_usuarios', 'id_vagas', 'nome', 'email', 'telefone', 'data_nascimento', 'tipo', 'descricao', 'img')
     );
     
-    // 5. REDIRECIONAMENTO E FEEDBACK
     // Salva uma mensagem temporária de sucesso na sessão do usuário
     flash()->push('mensagem', 'Candidatura enviada com sucesso!');
     
@@ -90,3 +74,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: /Vaga?id=$id_vagas");
     exit();
 }
+
+view('Candidatar', compact('id_vaga')); 

@@ -1,6 +1,5 @@
 <?php
 
-// 1. PROCESSAMENTO DO FORMULÁRIO (Apenas se a requisição for do tipo POST)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Coleta as credenciais enviadas pela empresa no formulário
@@ -14,8 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ], $_POST);
 
 
-    // Se a validação inicial falhar (campos vazios ou e-mail inválido), 
-    // redireciona de volta para a tela de login da empresa
     if ($validacao->naoPassou('LoginEmpresa')) {
 
         header("Location: /LoginEmpresa");
@@ -23,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-    // 2. BUSCA DA EMPRESA NO BANCO DE DADOS
     // Consulta se existe alguma empresa cadastrada com o e-mail fornecido
     $empresa = $database->query(
         sql: "select * from empresas where email = :email",
@@ -32,14 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     )->fetch();
 
 
-    // 3. VERIFICAÇÃO DE SENHA (Caso a empresa seja encontrada no banco)
     if ($empresa) {
 
-        $senhaDoPost = $_POST['senha'];    // Senha que foi digitada no formulário
-        $senhaDoBanco = $empresa->senha;  // Senha (hash ou texto) que está gravada na tabela 'empresas'
+        $senhaDoPost = $_POST['senha'];    
+        $senhaDoBanco = $empresa->senha;  
 
         // Compara a senha digitada com a que está salva.
-        // Nota: o operador "!" nega apenas o primeiro termo (!$senhaDoPost) na sua lógica original.
         if (!$senhaDoPost == $senhaDoBanco) {
 
             // Se as senhas não baterem, cria uma mensagem de erro na sessão e redireciona
@@ -49,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
         }
 
-        // 4. AUTENTICAÇÃO COM SUCESSO
+      
         // Salva o objeto da empresa na sessão global 'auth' para mantê-la logada no sistema
         $_SESSION['auth'] = $empresa;
 
@@ -62,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-    // 5. TRATAMENTO DE ERRO (Caso o e-mail da empresa não exista no banco de dados)
     // Define a mensagem genérica de erro para segurança e redireciona de volta ao formulário
     flash()->push('validacoes_login', ['Usuario ou senha estão incorretos']);
     header('Location: /LoginEmpresa');
@@ -70,6 +63,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-// FLUXO DE CARREGAMENTO (GET)
-// Se a página for acessada diretamente (via URL), renderiza a View do formulário de login da empresa
 view('LoginEmpresa');

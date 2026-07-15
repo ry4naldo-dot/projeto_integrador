@@ -56,5 +56,17 @@
             </div>
         <?php endif; ?>
 
+        <?php
+        if (isset($_SESSION['auth']) && isset($_SESSION['auth']->nome_empresa)):
+        ?>
+            <div class="mt-10 pt-8 border-t border-gray-100">
+                <a href="/DeletarVaga?id=<?= $vagas->id ?>"
+                    onclick="return confirm('Tem certeza que deseja excluir esta vaga permanentemente?');"
+                    class="inline-block text-center w-full lg:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-10 rounded-lg transition-all text-lg shadow-lg shadow-red-200">
+                    Excluir Vaga
+                </a>
+            </div>
+        <?php endif; ?>
+
     </article>
 </main>

@@ -11,4 +11,5 @@ class Vagas
     public $valor;
     public $modelo;
     public $endereco;
+    public $iniciais;
 }

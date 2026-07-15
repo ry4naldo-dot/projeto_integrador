@@ -1,6 +1,5 @@
 <?php
 
-// 1. PROCESSAMENTO DO FORMULÁRIO (Apenas se a requisição for do tipo POST)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Coleta as informações de cadastro enviadas pela empresa no formulário
@@ -8,17 +7,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $telefone = $_POST['telefone'];
-    $tipo = $_POST['tipo']; // Tipo de empresa ou segmento de atuação
+    $tipo = $_POST['tipo'];
     $endereco = $_POST['endereco'];
-    $descricao = $_POST['descricao']; // Breve resumo ou biografia da empresa
-    $validacao = []; // Inicializa a variável como um array vazio (ela será sobrescrevida pelo validador abaixo)
+    $descricao = $_POST['descricao'];
+    $validacao = [];
 
-    // 2. VALIDAÇÃO DOS CAMPOS
     // Define as regras de validação para cada campo do formulário de cadastro
     $validacao = Validacao::validar([
         'nome_empresa' => ['required'],
-        'email'        => ['required', 'email', 'unique:empresas'], // Garante que o e-mail seja válido e único na tabela 'empresas'
-        'senha'        => ['required', 'min:6', 'max:64'], // Senha deve ter entre 6 e 64 caracteres
+        'email'        => ['required', 'email', 'unique:empresas'],
+        'senha'        => ['required', 'min:6', 'max:64'],
         'telefone'     => ['required'],
         'tipo'         => ['required'],
         'endereco'     => ['required']
@@ -34,35 +32,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-    // 3. SALVAMENTO NO BANCO DE DADOS
     // Executa a query para cadastrar a nova empresa na tabela correspondente
     $database->query(
-        sql: "INSERT INTO empresas (nome_empresa, email, senha, numero, tipo, endereco, descricao) 
-              VALUES (:nome_empresa, :email, :senha, :numero, :tipo, :endereco, :descricao)",
-        
-        // Passa os parâmetros de forma segura para substituir os placeholders
+        sql: "insert into empresas (nome_empresa, email, senha, numero, tipo, endereco, descricao) 
+              values (:nome_empresa, :email, :senha, :numero, :tipo, :endereco, :descricao)",
         params: [
             'nome_empresa' => $nome_empresa,
             'email'        => $email,
-            // Criptografa a senha do usuário utilizando o algoritmo padrão do PHP (BCRYPT) por questões de segurança
-            'senha'        => password_hash($senha, PASSWORD_DEFAULT), 
-            'numero'       => $telefone, // Associa o dado 'telefone' à coluna 'numero' do banco de dados
+            'senha'        => password_hash($senha, PASSWORD_DEFAULT),
+            'numero'       => $telefone,
             'tipo'         => $tipo,
             'endereco'     => $endereco,
             'descricao'    => $descricao
         ]
     );
 
-    // 4. FEEDBACK E DIRECIONAMENTO
     // Cria uma mensagem de sucesso na sessão para ser exibida na tela de destino
     flash()->push('mensagem', ["Empresa registrada com sucesso!"]);
-    
+
     // Redireciona a nova empresa para a tela de login
     header('Location: /LoginEmpresa');
     exit;
 }
 
 
-// FLUXO DE CARREGAMENTO (GET)
-// Se a página for acessada via URL comum, carrega a View que exibe o formulário de cadastro
 view('CadastroEmpresa');
