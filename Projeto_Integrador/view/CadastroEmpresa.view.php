@@ -12,7 +12,6 @@
             </p>
         </div>
 
-        <!-- Alerta de Erro (se houver) -->
         <?php
         if ($validacao = flash()->get('validacoes_registro')):
             foreach ($validacao as $v):

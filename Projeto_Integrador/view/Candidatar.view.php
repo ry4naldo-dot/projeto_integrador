@@ -19,7 +19,6 @@
         </div>
 
         <!-- Formulário de Candidatura -->
-        <!-- O enctype="multipart/form-data" é OBRIGATÓRIO para o upload do campo "img" -->
         <form action="Candidatar" method="POST" enctype="multipart/form-data" class="space-y-6">
             <input type="hidden" name="id_vagas" value="<?= $_REQUEST['id'] ?? '' ?>">
             <!-- Campo Nome Completo -->

@@ -35,16 +35,6 @@
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-base">
             </div>
 
-            <!-- <div class="flex items-center justify-between text-sm mt-2">
-                <label class="flex items-center text-gray-600 cursor-pointer">
-                    <input type="checkbox" name="lembrar" class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                    Lembrar de mim
-                </label>
-                <a href="/recuperar-senha" class="text-blue-600 hover:text-blue-800 hover:underline font-medium">
-                    Esqueceu a senha?
-                </a>
-            </div> -->
-
             <button type="submit"
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-lg mt-2">
                 Entrar

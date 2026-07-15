@@ -14,7 +14,7 @@
 
         <!-- Cabeçalho -->
         <div class="border-b border-gray-100 pb-6 mb-6">
-            <!-- Nome da empresa (campo nome_empresa de image_b3b503.png) -->
+            <!-- Nome da empresa -->
             <p class="text-blue-600 font-bold uppercase text-sm tracking-wide mb-2"><?= ($vagas->nome_empresa) ?></p>
 
             <!-- Badges de Informações -->
@@ -55,12 +55,6 @@
                 </a>
             </div>
         <?php endif; ?>
-        <!-- <div class="mt-10 pt-8 border-t border-gray-100">
-            <a href="/Candidatar?id=<?= $vagas->id ?>" class="inline-block text-center w-full lg:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg transition-all text-lg shadow-lg shadow-blue-200">
-                Candidatar-se agora
-            </a>
-        </div> -->
-
 
     </article>
 </main>
