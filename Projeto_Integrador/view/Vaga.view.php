@@ -46,11 +46,20 @@
         </div>
 
         <!-- Botão de Ação -->
-        <div class="mt-10 pt-8 border-t border-gray-100">
+        <?php
+        if (isset($_SESSION['auth']) && isset($_SESSION['auth']->nome)):
+        ?>
+            <div class="mt-10 pt-8 border-t border-gray-100">
+                <a href="/Candidatar?id=<?= $vagas->id ?>" class="inline-block text-center w-full lg:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg transition-all text-lg shadow-lg shadow-blue-200">
+                    Candidatar-se agora
+                </a>
+            </div>
+        <?php endif; ?>
+        <!-- <div class="mt-10 pt-8 border-t border-gray-100">
             <a href="/Candidatar?id=<?= $vagas->id ?>" class="inline-block text-center w-full lg:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg transition-all text-lg shadow-lg shadow-blue-200">
                 Candidatar-se agora
             </a>
-        </div>
+        </div> -->
 
 
     </article>

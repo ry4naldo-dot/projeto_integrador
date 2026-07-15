@@ -14,4 +14,7 @@ class Curriculo
     public $email;
     public $img;
     public $tipo;
+    public $modelo;
+    public $valor;
+    
 }

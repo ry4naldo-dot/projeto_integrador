@@ -1,8 +1,7 @@
-# Projeto Integrador (PI) - Adote-Me
+# Projeto Integrador (PI) - ClickVagas
 
-Mural de anúncios simples e centralizado para conectar pessoas que encontraram animais abandonados (ou têm filhotes para doar) com pessoas interessadas em adotar um pet.
+Mural de empregos simples e centralizado para conectar empresas locais que estão contratando com profissionais que buscam novas oportunidades no mercado de trabalho.
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 ![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61DAFB?logo=react&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/CSS-TailwindCSS-38B2AC?logo=tailwindcss&logoColor=white)
 ![PHP](https://img.shields.io/badge/Backend-PHP%20%2F%20Slim4-777BB4?logo=php&logoColor=white)
@@ -12,32 +11,31 @@ Mural de anúncios simples e centralizado para conectar pessoas que encontraram 
 
 PI para o Módulo de Desenvolvimento de Sistemas do curso Técnico em Informática do Senac.
 
-O **Adote-Me** nasceu para resolver um problema simples: em Tramandaí, ONGs já organizam feiras de adoção de pets e fazem um bom trabalho, mas essa iniciativa é pouco divulgada e os anúncios de animais para adoção acabam se perdendo em redes sociais. O projeto centraliza esses anúncios em um site único, organizado e fácil de navegar.
-**Objetivo principal:** criar um site que funcione como um mural de anúncios, substituindo posts perdidos em redes sociais por uma listagem organizada de animais disponíveis para adoção.
+O **ClickVagas** nasceu para resolver um problema simples: em Tramandaí, o comércio local, polos educacionais e prestadores de serviço divulgam muitas oportunidades, mas esses anúncios acabam se perdendo rapidamente em grupos de WhatsApp e redes sociais. O projeto centraliza essas vagas em um site único, organizado e fácil de navegar.
+**Objetivo principal:** criar um site que funcione como um mural de classificados de emprego, substituindo posts pulverizados e difíceis de filtrar por uma listagem clara de vagas abertas.
 **Público-alvo:**
 
-- Pessoas que querem adotar um animal.
-- Pessoas que precisam doar um pet (ou encontraram um animal abandonado).
+- Pessoas que buscam oportunidades de emprego, estágio ou trabalhos freelancer.
+- Empresas e recrutadores locais que precisam divulgar vagas de forma acessível.
 
 ## Funcionalidades
 
 ### O que o sistema terá
 
-- **Tela principal (mural):** listagem visual com foto, nome, idade aproximada, porte (pequeno/médio/grande) e cidade/bairro de cada animal.
-- **Filtros de busca:** por tipo de animal (cachorro ou gato) e por porte.
-- **Cadastro de pets (CRUD):** área administrativa para cadastrar, editar e marcar pets como "Adotado" (removendo-os da listagem pública).
-- **Página de detalhes do pet:** história do animal e contato (WhatsApp ou e-mail) do responsável pela doação.
-- **Tela de "pós-adoção":** espaço para quem adotou um pet postar fotos/relatos de como o animal está, com reações de outros usuários.
+- **Tela principal (mural):** : listagem visual com título da vaga, nome da empresa, modelo (presencial, híbrido ou remoto), salário (ou "a combinar") e cidade/bairro.
+- **Filtros de busca:** por categoria da vaga (ex: Tecnologia, Agronomia, Medicina) e por modelo de trabalho.
+- **Filtros para vagas:** poderá filtrar o tipo de vaga que você procura (ex: Hibrido, Presencial, Home Office).
+- **Página de detalhes da vaga:** descrição completa das atividades, requisitos e botão de contato (WhatsApp ou link externo) da empresa.
+- **Criação de vagas:** a empresa poderá criar uma vaga personalizada para que seja exatamente o que ela precisa no momento.
 
 ### Fora do escopo
 
 - ❌ Chat interno — o contato acontece direto por WhatsApp/e-mail informado no anúncio.
-- ❌ Cadastro/login para o adotante — qualquer pessoa pode navegar e ver os animais sem se cadastrar.
-- ❌ Cobrança de taxas ou doações em dinheiro pelo site.
+- ❌ Cobrança de taxas para divulgação de vagas.
 - ❌ Comentários nas postagens de pós-adoção — apenas reações (curtidas) são permitidas.
 - ❌ Edição/exclusão de postagem pelo próprio usuário após publicada.
-- ❌ Geolocalização/busca por distância — cidade/bairro são apenas texto livre, sem mapa.
-- ❌ Aplicativo mobile nativo — o projeto é apenas web.
+- ❌ Geolocalização/busca por distância — a localização é apenas um texto livre.
+- ❌ Aplicativo mobile nativo — o projeto é apenas web (responsivo).
 
 ## Protótipo
 
@@ -47,12 +45,11 @@ O **Adote-Me** nasceu para resolver um problema simples: em Tramandaí, ONGs já
 
 | Camada                 | Tecnologia                                                                           |
 | ---------------------- | ------------------------------------------------------------------------------------ |
-| **Frontend**           | React JS + Vite, estilizado com TailwindCSS                                          |
+| **Frontend**           | HTML estilizado com TailwindCSS                                          |
 | **Backend**            | PHP com o framework Slim4 — API própria (RESTful), seguindo arquitetura MVC          |
-| **Autenticação**       | JWT (Json Web Token) para login, com autenticação por roles (dois perfis de usuário) |
-| **Banco de dados**     | MySQL — IDs em UUID gerados no PHP com `ramsey/uuid`                                 |
+| **Banco de dados**     | MySQl                                 |
 | **Ambiente local**     | XAMPP                                                                                |
-| **Outras ferramentas** | Canva (prototipagem) · GitHub (versionamento e gestão do projeto)                    |
+| **Outras ferramentas** | GitHub (versionamento e gestão do projeto)                    |
 
 ## Estrutura de pastas
 

@@ -57,7 +57,7 @@
             <?php endif; ?>
         </nav>
 
-        <form action="/buscar" method="GET" class="w-[90%] lg:w-auto">
+        <form class="w-[90%] lg:w-auto">
             <input
                 type="text"
                 name="pesquisar"

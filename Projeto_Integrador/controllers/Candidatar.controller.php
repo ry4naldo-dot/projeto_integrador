@@ -2,7 +2,7 @@
 
 // 1. Defesa Inicial: Se não estiver logado, barra logo de início
 if (!auth()) {
-    abort(403); // Ou header('Location: /login');
+    header('Location: /login');
     exit();
 }
 
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               VALUES (:id_usuarios, :id_vagas, :nome, :email, :telefone, :data_nascimento, :tipo, :descricao, :img);",
         params: compact('id_usuarios', 'id_vagas', 'nome', 'email', 'telefone', 'data_nascimento', 'tipo', 'descricao', 'img')
     );
-
+    
     flash()->push('mensagem', 'Candidatura enviada com sucesso!');
     header("Location: /Vaga?id=$id_vagas");
     exit();

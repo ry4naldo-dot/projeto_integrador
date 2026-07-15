@@ -15,8 +15,7 @@ class DB
     private function getDsn($config)
     {
 
-         $driver = $config['driver'];
-        // unset($config['driver']);
+        $driver = $config['driver'];
 
         if (isset($config['database'])) {
             $config['dbname'] = $config['database'];

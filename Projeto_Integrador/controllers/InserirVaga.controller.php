@@ -1,23 +1,20 @@
 <?php
 
-// 1. Defesa Inicial: Se não estiver logado, não faz nada e expulsa
+//Se não estiver logado, não faz nada e volta pro index
 if (!auth()) {
     header('Location: /');
     exit();
 }
 
-// ==========================================
-// FLUXO 1: Apenas exibir o formulário (GET)
-// ==========================================
+// Exibi o formulário (GET)
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    view('InserirVaga'); // Carrega a sua view com o formulário HTML
-    exit(); // Para a execução aqui para não tentar salvar no banco!
+    view('InserirVaga'); 
+    exit(); 
 }
 
 
-// ==========================================
-// FLUXO 2: Processar o envio dos dados (POST)
-// ==========================================
+
+// Processar o envio dos dados (POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $id_empresas = auth()->id;
