@@ -7,8 +7,8 @@ if (!auth()) {
     exit();
 }
 
-// Captura o ID da vaga que veio na query string da URL (ex: ?id=5). Se não houver, define como nulo.
-$id_vaga = $_REQUEST['id'] ?? null; 
+// Captura o ID da vaga que veio na query string da URL (ex: ?id=5).
+$id_vaga = $_REQUEST['id']; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
